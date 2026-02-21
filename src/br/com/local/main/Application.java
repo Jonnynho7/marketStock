@@ -12,16 +12,42 @@ public class Application {
     static void main() {
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println("digite o nome do produto: ");
         var nome = scanner.nextLine();
+        while (nome.isBlank()){
+            System.out.println("O campo não pode estar vazio, digite novamente!");
+            nome = scanner.nextLine();
+        }
 
         System.out.println("Digite uma curta descrição: ");
         var descricao = scanner.nextLine();
+        while (descricao.isBlank()){
+            System.out.println("O campo não pode estar vazio, digite novamente!");
+            descricao = scanner.nextLine();
+        }
 
         System.out.println("Digite o valor do produto");
+
+        while(!scanner.hasNextDouble()){
+            System.out.println("O valor é inválido, digite novamente!");
+            scanner.next();
+        }
+
         var valor = scanner.nextDouble();
 
+        while(valor <= 0){
+            System.out.println("O valor deve ser maior que 0, digite novamente!");
+            scanner.nextDouble();
+        }
+
         System.out.println("Digite a quantidade no estoque");
+
+        while(!scanner.hasNextInt()){
+            System.out.println("O valor é inválido, digite novamente!");
+            scanner.next();
+        }
+
         var quantidade = scanner.nextInt();
 
         ProductDTO produto = new ProductDTO(nome, descricao, valor, quantidade);
